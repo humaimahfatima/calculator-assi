@@ -1,20 +1,29 @@
-let buttons= document.querySelectorAll(".btn")
-let userInput=document.querySelector("#data")
-for(let i = 0; i<buttons.length;i++){
-buttons[i].addEventListener("click",(event) =>
-{
-    userInput.value += event.target.innerText;
-});
+let input = document.getElementById('inputBox');
+let buttons = document.querySelectorAll('button');
+let string = " ";
+let arr = Array.from(buttons);
+arr.forEach(button => {
+    button.addEventListener('click', (e) =>{
+        if(e.target.innerHTML == '=' ) {
+            string = eval(string);
+            input.value = string;
+        }
+
+        else if(e.target.innerHTML == 'AC'){
+            string = ""
+            input.value = string;
+        }
+        else if(e.target.innerHTML == 'DEL'){
+         string = string.substring(0, string.length-1);
+         input.value = string;
+        } 
+
+        else{
+         string += e.target.innerHTML;
+        input.value = string;
+        }
+
+        
+    })
 }
-// result
-let resultBtn = document.querySelector("#result")
-resultBtn.addEventListener("click",()=>{
-    let ouput= eval(userInput.value)
-    userInput.value = output;
-    // userInput.value= ""
-})
-// clear
-let clearBtn = document.querySelector("#full")
-clearBtn.addEventListener("click",()=>{
-     userInput.value= ""
-})
+)
